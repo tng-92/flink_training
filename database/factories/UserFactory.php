@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Enums\User\UserStatus;
+use App\Enums\User\UserType;
 use App\Models\Business;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
@@ -28,7 +30,8 @@ class UserFactory extends Factory
 
         return [
             'business_id' => $business->id,
-            'type' => 3,
+            'type' => UserType::ADMIN,
+            'status' => UserStatus::ACTIVE,
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),

@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Enums\User\UserStatus;
+use App\Enums\User\UserType;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -16,7 +18,8 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Tim George',
             'email' => 't.n.george92@gmail.com',
-            'type' => 1,
+            'type' => UserType::SUPER,
+            'status' => UserStatus::ACTIVE,
         ]);
 
         User::factory(5)->create();

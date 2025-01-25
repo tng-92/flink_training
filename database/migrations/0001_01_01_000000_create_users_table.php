@@ -45,6 +45,7 @@ return new class extends Migration
             $table->foreignId('business_id')->index();
             $table->string('name');
             $table->integer('type')->default(3);
+            $table->integer('status')->default(1);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
