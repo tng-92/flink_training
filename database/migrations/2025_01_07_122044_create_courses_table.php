@@ -13,13 +13,17 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('business_id')->index();
             $table->unsignedBigInteger('user_id')->index();
             $table->unsignedBigInteger('owned_by')->index();
             $table->string('code', 50);
             $table->string('name', 120);
+            $table->integer('net_price');
+            $table->integer('tax');
+            $table->integer('gross_price');
             $table->string('short_description', 255);
-            $table->int('type');
-            $table->inst('status');
+            $table->integer('type')->index();
+            $table->integer('status')->index();
             $table->softDeletes();
             $table->timestamps();
         });

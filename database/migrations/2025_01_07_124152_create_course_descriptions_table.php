@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('course_descriptions', function (Blueprint $table) {
+        Schema::create('courses_descriptions', function (Blueprint $table) {
             $table->id();
-            $table->foreign('course_id')->index();
+            $table->foreignId('course_id')->index();
             $table->text('feild_1');
-            $table->taxt('feild_2');
-            $table->taxt('feild_3');
+            $table->text('feild_2');
+            $table->text('feild_3');
             $table->timestamps();
             $table->softDeletes();
         });
