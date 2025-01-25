@@ -12,10 +12,14 @@ class Course extends Model
 
     public $fillable = [
         'user_id',
+        'business_id',
         'owned_by',
         'code',
         'name',
         'short_description',
+        'net_price',
+        'tax',
+        'gross_price',
         'type',
         'status',
     ];
