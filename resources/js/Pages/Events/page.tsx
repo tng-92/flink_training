@@ -1,19 +1,19 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Course } from '@/types/Models/course';
+import { Event } from '@/types/Models/event';
 import { PaginatedData } from '@/types/paginatatedData';
-import { Head, Link } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 
-export default function CoursesPage({ data }: { data: PaginatedData<Course> }) {
-    const courses = data.data;
+export default function Page({ data }: { data: PaginatedData<Event> }) {
+    const events = data.data;
     return (
         <AuthenticatedLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                    Courses
+                    Events
                 </h2>
             }
         >
-            <Head title="Courses" />
+            <Head title="Events" />
 
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -40,29 +40,23 @@ export default function CoursesPage({ data }: { data: PaginatedData<Course> }) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {courses.map((course) => (
-                                        <tr key={course.id}>
+                                    {events.map((event) => (
+                                        <tr key={event.id}>
                                             <td className="border-b border-gray-300 px-4 py-2 text-center">
-                                                {course.id}
+                                                {event.id}
                                             </td>
                                             <td className="border-b border-gray-300 px-4 py-2 text-center">
-                                                {course.name}
+                                                {event.course_name ??
+                                                    event.course_id}
                                             </td>
                                             <td className="border-b border-gray-300 px-4 py-2 text-center">
-                                                {course.status}
+                                                {event.status}
                                             </td>
                                             <td className="border-b border-gray-300 px-4 py-2 text-center">
-                                                {course.type}
+                                                {event.start_date}
                                             </td>
                                             <td className="border-b border-gray-300 px-4 py-2 text-center">
-                                                <Link
-                                                    href={`/courses/${course.id}`}
-                                                    prefetch
-                                                    cacheFor={'1m'}
-                                                >
-                                                    {' '}
-                                                    View{' '}
-                                                </Link>
+                                                view
                                             </td>
                                         </tr>
                                     ))}

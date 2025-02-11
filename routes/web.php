@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,11 @@ Route::middleware('auth')->group(function () {
 
     Route::group(['prefix' => 'courses/', 'as' => 'courses.'], function () {
         Route::get('/', [CourseController::class, 'index'])->name('index');
+        Route::get('/{course}', [CourseController::class, 'show'])->name('show');
+    });
+
+    Route::group(['prefix' => 'events/', 'as' => 'events.'], function () {
+        Route::get('/', [EventController::class, 'index'])->name('index');
     });
 });
 

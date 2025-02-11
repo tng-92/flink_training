@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('business_id')->index();
             $table->foreignId('course_id');
-            $table->unsignedBigInteger('trainer_id');
+            $table->unsignedBigInteger('trainer_id')->index();
             $table->unsignedBigInteger('created_by');
             $table->integer('code')->unique();
+            $table->integer('status')->index();
             $table->date('start_date')->index();
             $table->date('end_date')->index();
             $table->time('start_time')->nullable();
