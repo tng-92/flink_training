@@ -1,4 +1,4 @@
-export type Course = {
+export type Course<T = { object }> = {
     business_id: number;
     code: string;
     created_at: string;
@@ -14,4 +14,4 @@ export type Course = {
     type: number;
     updated_at: string;
     user_id: number;
-};
+} & T;

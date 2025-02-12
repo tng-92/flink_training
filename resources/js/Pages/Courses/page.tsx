@@ -1,10 +1,18 @@
+import Modal from '@/Components/Modal';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Course } from '@/types/Models/course';
 import { PaginatedData } from '@/types/paginatatedData';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, router } from '@inertiajs/react';
 
-export default function CoursesPage({ data }: { data: PaginatedData<Course> }) {
+export default function CoursesPage({
+    data,
+    addNew,
+}: {
+    data: PaginatedData<Course>;
+    addNew: boolean;
+}) {
     const courses = data.data;
+
     return (
         <AuthenticatedLayout
             header={
@@ -18,6 +26,23 @@ export default function CoursesPage({ data }: { data: PaginatedData<Course> }) {
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
+                        <div id="banner" className="fontd">
+                            <button
+                                onClick={() => {
+                                    router.get(
+                                        route('courses.index'),
+                                        {
+                                            addNew: true,
+                                        },
+                                        {
+                                            only: ['addNew'],
+                                        },
+                                    );
+                                }}
+                            >
+                                Add New
+                            </button>
+                        </div>
                         <div className="p-6 text-gray-900 dark:text-gray-100">
                             <table className="w-full">
                                 <thead>
@@ -68,6 +93,34 @@ export default function CoursesPage({ data }: { data: PaginatedData<Course> }) {
                                     ))}
                                 </tbody>
                             </table>
+                            <Modal
+                                show={addNew}
+                                onClose={() => {
+                                    // router.reload({
+                                    //     only: ['add-new'],
+                                    //     data: {
+                                    //         addNew: false,
+                                    //     },
+                                    // });
+                                }}
+                            >
+                                <button
+                                    onClick={() => {
+                                        router.get(
+                                            route('courses.index'),
+                                            {
+                                                //
+                                            },
+                                            { only: ['addNew'] },
+                                        );
+                                    }}
+                                >
+                                    Close this bitch
+                                </button>
+                                <div className="bg-white">
+                                    This is the Add new
+                                </div>
+                            </Modal>
                         </div>
                     </div>
                 </div>
